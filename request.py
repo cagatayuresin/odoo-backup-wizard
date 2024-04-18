@@ -27,7 +27,7 @@ class Backup:
                 os.makedirs(output_folder)  # Eğer klasör yoksa oluştur
 
             file_path = os.path.join(
-                output_folder, f"{name}-{datetime.now().strftime("%Y-%m-%d-%H-%M-%S")}.{fileformat}"
+                output_folder, f"""{name}-{datetime.now().strftime("%Y-%m-%d-%H-%M-%S")}.{fileformat}"""
             )  # Dosyanın kaydedileceği tam yol
 
             with open(file_path, "wb") as f:
