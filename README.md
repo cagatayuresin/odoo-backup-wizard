@@ -22,9 +22,8 @@ To get started with Odoo Backup Wizard, please refer to the documentation availa
 
 ## Installation on Windows
 
-<button name="win_cli_button" onclick="http://www.google.com">Download Windows CLI</button>
-<button name="win_gui_button" onclick="http://www.google.com">Download Winows GUI </button>
-
+<button name="win_cli_button" onclick="https://github.com/cagatayuresin/odoo-backup-wizard/releases/download/v1.0/odoo_backup_wizard.exe">Download Windows CLI</button>
+<button name="win_gui_button" onclick="https://github.com/cagatayuresin/odoo-backup-wizard/releases/download/v1.0/odoo_backup_wizard_gui.exe">Download Winows GUI </button>
 ## Usage
 
 ### CLI
