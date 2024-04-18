@@ -65,9 +65,9 @@ options:
 
 ### GUI
 
-![GUI ss1](https://assets.digitalocean.com/articles/alligator/boo.svg "a title")
+![GUI ss1](https://raw.githubusercontent.com/cagatayuresin/odoo-backup-wizard/master/resources/ss1.png "SS1")
 
-![GUI ss2](https://assets.digitalocean.com/articles/alligator/boo.svg "a title")
+![GUI ss2](https://raw.githubusercontent.com/cagatayuresin/odoo-backup-wizard/master/resources/ss2.png "SS2")
 
 ## Contributing
 
