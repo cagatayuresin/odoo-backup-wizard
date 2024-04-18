@@ -83,7 +83,7 @@ Enter master password:
 Enter database name to backup: db1
 Enter backup file format (zip/dump): zip
 Enter output folder: ./backup
-
+```
 
 ### GUI
 
