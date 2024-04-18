@@ -14,7 +14,7 @@ with tempfile.NamedTemporaryFile(delete=False, suffix='.ico') as temp:
     temp_filename = temp.name
 
 
-def backup_request(url, name, master_pwd, file_format, delete_older_than, output_folder, config_file):
+def backup_request(url, name, master_pwd, fileformat, delete_older_than, output_folder, config_file):
     if config_file:
         with open(config_file, "r") as f:
             config = json.load(f)
@@ -22,11 +22,11 @@ def backup_request(url, name, master_pwd, file_format, delete_older_than, output
                 url = db.get("url")
                 name = db.get("name")
                 master_pwd = db.get("master_pwd")
-                file_format = db.get("file_format")
+                fileformat = db.get("fileformat")
                 output_folder = db.get("output_folder")
                 delete_older_than = int(db.get("delete_older_than"))
                 try:
-                    result = Backup.backup(url, master_pwd, name, file_format, output_folder)
+                    result = Backup.backup(url, master_pwd, name, fileformat, output_folder)
                 except Exception as e:
                     return False, e
                 if result and delete_older_than:
@@ -35,7 +35,7 @@ def backup_request(url, name, master_pwd, file_format, delete_older_than, output
         return True, None
     else:
         try:
-            result = Backup.backup(url, master_pwd, name, file_format, output_folder)
+            result = Backup.backup(url, master_pwd, name, fileformat, output_folder)
         except Exception as e:
             return False, e
         if result and delete_older_than:
