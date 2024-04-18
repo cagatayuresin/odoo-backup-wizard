@@ -1,5 +1,6 @@
+<a href="https://www.odoo.com" target="_blank"><img src="https://raw.githubusercontent.com/cagatayuresin/odoo-backup-wizard/master/resources/odoo_logo.png" alt="Odoo" height="25"></a>
+
 <a href="https://www.buymeacoffee.com/cagatayuresin" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="25"></a>
-<a href="https://upload.wikimedia.org/wikipedia/commons/a/a7/Odoo_Official_Logo.png" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a7/Odoo_Official_Logo.png" alt="Buy Me A Coffee" height="25"></a>
 
 # Odoo Backup Wizard
 
@@ -27,6 +28,8 @@ To get started with Odoo Backup Wizard, please refer to the documentation availa
 ## Usage
 
 ### CLI
+
+#### CLI usage with args:
 
 ```bash
 python odoo_backup_wizard.py --help
@@ -63,6 +66,26 @@ options:
                         Config file path (JSON)
 ```
 
+#### CLI usage without args:
+
+```bash
+
+ ██████╗ ██████╗  ██████╗  ██████╗     ██████╗  █████╗  ██████╗██╗  ██╗██╗   ██╗██████╗     ██╗    ██╗██╗███████╗ █████╗ ██████╗ ██████╗
+██╔═══██╗██╔══██╗██╔═══██╗██╔═══██╗    ██╔══██╗██╔══██╗██╔════╝██║ ██╔╝██║   ██║██╔══██╗    ██║    ██║██║╚══███╔╝██╔══██╗██╔══██╗██╔══██╗
+██║   ██║██║  ██║██║   ██║██║   ██║    ██████╔╝███████║██║     █████╔╝ ██║   ██║██████╔╝    ██║ █╗ ██║██║  ███╔╝ ███████║██████╔╝██║  ██║
+██║   ██║██║  ██║██║   ██║██║   ██║    ██╔══██╗██╔══██║██║     ██╔═██╗ ██║   ██║██╔═══╝     ██║███╗██║██║ ███╔╝  ██╔══██║██╔══██╗██║  ██║
+╚██████╔╝██████╔╝╚██████╔╝╚██████╔╝    ██████╔╝██║  ██║╚██████╗██║  ██╗╚██████╔╝██║         ╚███╔███╔╝██║███████╗██║  ██║██║  ██║██████╔╝
+ ╚═════╝ ╚═════╝  ╚═════╝  ╚═════╝     ╚═════╝ ╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝ ╚═════╝ ╚═╝          ╚══╝╚══╝ ╚═╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝╚═════╝
+Cagatay URESIN <cagatayuresin@gmail.com>                                                              v.1.0
+https://github.com/cagatayuresin
+
+Enter Odoo server URL: odoo.example.com
+Enter master password:
+Enter database name to backup: db1
+Enter backup file format (zip/dump): zip
+Enter output folder: ./backup
+
+
 ### GUI
 
 ![GUI ss1](https://raw.githubusercontent.com/cagatayuresin/odoo-backup-wizard/master/resources/ss1.png "SS1")
@@ -80,24 +103,24 @@ The file must be in JSON format.
     "name": "db1",
     "master_pwd": "pwd1",
     "fileformat": "zip",
-    "output_folder": "backups",
-    "delete_older_than": 7
+    "output_folder": "C:\\backup",
+    "delete_older_than": 365
   },
   {
     "url": "odoo.example.com",
     "name": "db2",
     "master_pwd": "pwd2",
     "fileformat": "zip",
-    "output_folder": "backups",
+    "output_folder": "C:\\backup",
     "delete_older_than": 7
   },
   {
     "url": "odoo.example.com",
     "name": "db3",
     "master_pwd": "pwd3",
-    "fileformat": "zip",
-    "output_folder": "backups",
-    "delete_older_than": 7
+    "fileformat": "dump",
+    "output_folder": "C:\\backups",
+    "delete_older_than": 30
   }
 ]
 ```

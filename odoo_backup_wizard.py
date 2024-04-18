@@ -2,6 +2,7 @@ import argparse
 import json
 from request import Backup
 from tools import clear_screen
+import getpass
 
 
 LOGO = """
@@ -55,7 +56,7 @@ def main():
     else:
         running_via_args = any([args.url, args.name, args.master_pwd])
         url = args.url if args.url else input("Enter Odoo server URL: ")
-        master_pwd = args.master_pwd if args.master_pwd else input("Master Password: ")
+        master_pwd = args.master_pwd if args.master_pwd else getpass.getpass("Enter master password: ")
         name = args.name if args.name else input("Enter database name to backup: ")
         fileformat = (
             args.fileformat
