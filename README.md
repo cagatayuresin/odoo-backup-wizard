@@ -69,6 +69,39 @@ options:
 
 ![GUI ss2](https://raw.githubusercontent.com/cagatayuresin/odoo-backup-wizard/master/resources/ss2.png "SS2")
 
+### Configuration File
+
+The file must be in JSON format.
+
+```json
+[
+  {
+    "url": "odoo.example.com",
+    "name": "db1",
+    "master_pwd": "pwd1",
+    "fileformat": "zip",
+    "output_folder": "backups",
+    "delete_older_than": 7
+  },
+  {
+    "url": "odoo.example.com",
+    "name": "db2",
+    "master_pwd": "pwd2",
+    "fileformat": "zip",
+    "output_folder": "backups",
+    "delete_older_than": 7
+  },
+  {
+    "url": "odoo.example.com",
+    "name": "db3",
+    "master_pwd": "pwd3",
+    "fileformat": "zip",
+    "output_folder": "backups",
+    "delete_older_than": 7
+  }
+]
+```
+
 ## Contributing
 
 We welcome contributions from the community! If you have suggestions, bug reports, or contributions, please submit them via issues or pull requests on this repository. Your input is invaluable in making Odoo Backup Wizard more effective and reliable.
