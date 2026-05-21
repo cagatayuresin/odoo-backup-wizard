@@ -1,5 +1,7 @@
 /.venv/
 /.idea/
+/.vscode/
+/.claude/
 # Ultimate Python Related Projects' gitignore File
 __pycache__/
 *.py[cod]

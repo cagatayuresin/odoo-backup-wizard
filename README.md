@@ -1,135 +1,197 @@
 <a href="https://www.odoo.com" target="_blank"><img src="https://raw.githubusercontent.com/cagatayuresin/odoo-backup-wizard/master/resources/odoo_logo.png" alt="Odoo" height="25"></a>
-
 <a href="https://www.buymeacoffee.com/cagatayuresin" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="25"></a>
+
+![CI](https://github.com/cagatayuresin/odoo-backup-wizard/actions/workflows/ci.yml/badge.svg)
+![PyPI](https://img.shields.io/pypi/v/odoo-backup-wizard)
+![Python](https://img.shields.io/pypi/pyversions/odoo-backup-wizard)
+![License](https://img.shields.io/github/license/cagatayuresin/odoo-backup-wizard)
 
 # Odoo Backup Wizard
 
-Odoo Backup Wizard is a robust, cross-platform tool designed to automate the backup process for Odoo servers. This utility ensures your critical business data is safely backed up, supporting both GUI and CLI operations for versatile usability. The program is ideal for administrators and IT professionals managing Odoo deployments who need to ensure data integrity and availability with minimal effort.
+A cross-platform CLI tool that automates Odoo database backups via the built-in
+database manager API (`/web/database/backup`). Designed for system administrators
+who run Odoo on Linux and need reliable, scriptable, cron-friendly backups.
 
 ## Key Features
 
-- **Automated Backups:** Set up once and let Odoo Backup Wizard handle the rest, with scheduled backups that ensure your data is always up-to-date.
-- **Cross-Platform Compatibility:** Whether you are running your Odoo on Windows, Linux, or macOS, Odoo Backup Wizard works seamlessly across all platforms.
-- **GUI and CLI Support:** Use the graphical user interface for an intuitive experience or the command-line interface for automation and scripting.
-- **Customizable Backup Paths:** Easily configure where your backups are stored, ensuring compatibility with your existing file management practices.
-- **Simple Restoration Process:** Restoring from backups is just as straightforward, ensuring you can quickly recover from data loss events.
+- **Single-command backups** — one line to download a `.zip` or `.dump`
+- **Batch backups** — back up multiple databases in one run via a JSON config file
+- **Backup retention** — automatically delete backups older than N days
+- **Cron-ready** — structured log output, meaningful exit codes, no interactive prompts
+- **Secure** — master password from env var, SSL verification, warns on plaintext passwords
+- **Retry logic** — automatic retry with exponential back-off on transient server errors
+- **Zero bloat** — single runtime dependency (`requests`)
 
-## Getting Started
+---
 
-To get started with Odoo Backup Wizard, please refer to the documentation available in this repository. Installation instructions, usage guidelines, and configuration details are all included to help you set up the tool according to your needs.
-
-***
-
-## Installation on Windows
-
-<button name="win_cli_button" onclick="https://github.com/cagatayuresin/odoo-backup-wizard/releases/download/v1.0/odoo_backup_wizard.exe">Download Windows CLI</button>
-<button name="win_gui_button" onclick="https://github.com/cagatayuresin/odoo-backup-wizard/releases/download/v1.0/odoo_backup_wizard_gui.exe">Download Winows GUI </button>
-## Usage
-
-### CLI
-
-#### CLI usage with args:
+## Installation
 
 ```bash
-python odoo_backup_wizard.py --help
+pip install odoo-backup-wizard
 ```
+
+Or install from source:
 
 ```bash
-
- ██████╗ ██████╗  ██████╗  ██████╗     ██████╗  █████╗  ██████╗██╗  ██╗██╗   ██╗██████╗     ██╗    ██╗██╗███████╗ █████╗ ██████╗ ██████╗
-██╔═══██╗██╔══██╗██╔═══██╗██╔═══██╗    ██╔══██╗██╔══██╗██╔════╝██║ ██╔╝██║   ██║██╔══██╗    ██║    ██║██║╚══███╔╝██╔══██╗██╔══██╗██╔══██╗
-██║   ██║██║  ██║██║   ██║██║   ██║    ██████╔╝███████║██║     █████╔╝ ██║   ██║██████╔╝    ██║ █╗ ██║██║  ███╔╝ ███████║██████╔╝██║  ██║
-██║   ██║██║  ██║██║   ██║██║   ██║    ██╔══██╗██╔══██║██║     ██╔═██╗ ██║   ██║██╔═══╝     ██║███╗██║██║ ███╔╝  ██╔══██║██╔══██╗██║  ██║
-╚██████╔╝██████╔╝╚██████╔╝╚██████╔╝    ██████╔╝██║  ██║╚██████╗██║  ██╗╚██████╔╝██║         ╚███╔███╔╝██║███████╗██║  ██║██║  ██║██████╔╝
- ╚═════╝ ╚═════╝  ╚═════╝  ╚═════╝     ╚═════╝ ╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝ ╚═════╝ ╚═╝          ╚══╝╚══╝ ╚═╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝╚═════╝
-Cagatay URESIN <cagatayuresin@gmail.com>                                                              v.1.0
-https://github.com/cagatayuresin
-
-usage: odoo_backup_wizard.py [-h] [--url URL] [-n NAME] [-p MASTER_PWD] [-f FILEFORMAT] [-o OUTPUT_FOLDER] [-d DELETE_OLDER_THAN] [-c CONFIG_FILE]
-
-Odoo Database Backup Tool
-
-options:
-  -h, --help            show this help message and exit
-  -u URL, --url URL     URL of the Odoo server
-  -n NAME, --name NAME  DB Name
-  -p MASTER_PWD, --master-pwd MASTER_PWD
-                        Master Password
-  -f FILEFORMAT, --fileformat FILEFORMAT
-                        Format of the backup file
-  -o OUTPUT_FOLDER, --output-folder OUTPUT_FOLDER
-                        Output folder
-  -d DELETE_OLDER_THAN, --delete-older-than DELETE_OLDER_THAN
-                        Delete backups older than x days
-  -c CONFIG_FILE, --config-file CONFIG_FILE
-                        Config file path (JSON)
+git clone https://github.com/cagatayuresin/odoo-backup-wizard.git
+cd odoo-backup-wizard
+pip install -e .
 ```
 
-#### CLI usage without args:
+---
+
+## Quick Start
 
 ```bash
+# Back up a single database
+odoo-backup-wizard -u odoo.example.com -n mydb
 
- ██████╗ ██████╗  ██████╗  ██████╗     ██████╗  █████╗  ██████╗██╗  ██╗██╗   ██╗██████╗     ██╗    ██╗██╗███████╗ █████╗ ██████╗ ██████╗
-██╔═══██╗██╔══██╗██╔═══██╗██╔═══██╗    ██╔══██╗██╔══██╗██╔════╝██║ ██╔╝██║   ██║██╔══██╗    ██║    ██║██║╚══███╔╝██╔══██╗██╔══██╗██╔══██╗
-██║   ██║██║  ██║██║   ██║██║   ██║    ██████╔╝███████║██║     █████╔╝ ██║   ██║██████╔╝    ██║ █╗ ██║██║  ███╔╝ ███████║██████╔╝██║  ██║
-██║   ██║██║  ██║██║   ██║██║   ██║    ██╔══██╗██╔══██║██║     ██╔═██╗ ██║   ██║██╔═══╝     ██║███╗██║██║ ███╔╝  ██╔══██║██╔══██╗██║  ██║
-╚██████╔╝██████╔╝╚██████╔╝╚██████╔╝    ██████╔╝██║  ██║╚██████╗██║  ██╗╚██████╔╝██║         ╚███╔███╔╝██║███████╗██║  ██║██║  ██║██████╔╝
- ╚═════╝ ╚═════╝  ╚═════╝  ╚═════╝     ╚═════╝ ╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝ ╚═════╝ ╚═╝          ╚══╝╚══╝ ╚═╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝╚═════╝
-Cagatay URESIN <cagatayuresin@gmail.com>                                                              v.1.0
-https://github.com/cagatayuresin
+# Specify format, output folder, and retention policy
+odoo-backup-wizard -u odoo.example.com -n mydb -f dump -o /var/backups/odoo -d 30
 
-Enter Odoo server URL: odoo.example.com
-Enter master password:
-Enter database name to backup: db1
-Enter backup file format (zip/dump): zip
-Enter output folder: ./backup
+# Use a JSON config file for multiple databases
+odoo-backup-wizard -c /etc/odoo-backup.json
 ```
 
-### GUI
+---
 
-![GUI ss1](https://raw.githubusercontent.com/cagatayuresin/odoo-backup-wizard/master/resources/ss1.png "SS1")
+## Options
 
-![GUI ss2](https://raw.githubusercontent.com/cagatayuresin/odoo-backup-wizard/master/resources/ss2.png "SS2")
+```text
+Usage: odoo-backup-wizard [OPTIONS]
 
-### Configuration File
+Options:
+  -u, --url URL               Odoo server URL
+  -n, --name NAME             Database name to back up
+  -p, --master-pwd PWD        Master password (or set ODOO_MASTER_PWD)
+  -f, --fileformat {zip,dump} Backup file format [default: zip]
+  -o, --output-folder DIR     Destination folder [default: ./backups]
+  -d, --delete-older-than N   Delete backups older than N days
+  -c, --config-file FILE      JSON config file (supports multiple databases)
+      --timeout SECONDS       HTTP timeout in seconds [default: 300]
+      --no-verify-ssl         Disable SSL certificate verification
+      --log-level LEVEL       DEBUG | INFO | WARNING | ERROR [default: INFO]
+      --version               Show version and exit
+  -h, --help                  Show this message and exit
+```
 
-The file must be in JSON format.
+---
+
+## Security
+
+Avoid passing the master password on the command line (it appears in `ps` output and shell history).
+Use the environment variable instead:
+
+```bash
+export ODOO_MASTER_PWD="your_master_password"
+odoo-backup-wizard -u odoo.example.com -n mydb
+```
+
+Priority order: `--master-pwd` > `ODOO_MASTER_PWD` > interactive prompt.
+
+---
+
+## Exit Codes
+
+| Code | Meaning                                      |
+| ---- | -------------------------------------------- |
+| 0    | Success                                      |
+| 1    | Backup failed (unexpected error)             |
+| 2    | Config file not found                        |
+| 3    | Authentication error (wrong master password) |
+| 4    | Connection error (server unreachable)        |
+
+Shell scripting example:
+
+```bash
+if odoo-backup-wizard -u odoo.example.com -n mydb; then
+    echo "Backup OK"
+else
+    echo "Backup FAILED with exit code $?" >&2
+fi
+```
+
+---
+
+## Cron Job
+
+```cron
+# /etc/cron.d/odoo-backup
+# Back up all production databases at 02:00 every night, keep 30 days
+0 2 * * * odoo-user ODOO_MASTER_PWD=secret odoo-backup-wizard -c /etc/odoo-backup.json
+```
+
+Or with a dedicated env file:
+
+```bash
+# /etc/cron.d/odoo-backup
+ODOO_MASTER_PWD=secret
+0 2 * * * odoo-user odoo-backup-wizard -c /etc/odoo-backup.json
+```
+
+---
+
+## Configuration File
+
+Use a JSON config file to back up multiple databases in one run.
+All fields except `url`, `name`, and `master_pwd` are optional.
 
 ```json
 [
   {
     "url": "odoo.example.com",
-    "name": "db1",
+    "name": "production",
     "master_pwd": "pwd1",
     "fileformat": "zip",
-    "output_folder": "C:\\backup",
-    "delete_older_than": 365
-  },
-  {
-    "url": "odoo.example.com",
-    "name": "db2",
-    "master_pwd": "pwd2",
-    "fileformat": "zip",
-    "output_folder": "C:\\backup",
-    "delete_older_than": 7
-  },
-  {
-    "url": "odoo.example.com",
-    "name": "db3",
-    "master_pwd": "pwd3",
-    "fileformat": "dump",
-    "output_folder": "C:\\backups",
+    "output_folder": "/var/backups/odoo/production",
     "delete_older_than": 30
+  },
+  {
+    "url": "odoo.example.com",
+    "name": "staging",
+    "master_pwd": "pwd2",
+    "fileformat": "dump",
+    "output_folder": "/var/backups/odoo/staging",
+    "delete_older_than": 7
   }
 ]
 ```
 
+**Security note:** config files with plaintext `master_pwd` will trigger a WARNING.
+Prefer the `ODOO_MASTER_PWD` environment variable.
+
+---
+
+## Development
+
+```bash
+git clone https://github.com/cagatayuresin/odoo-backup-wizard.git
+cd odoo-backup-wizard
+pip install -e ".[dev]"
+
+# Lint + format
+ruff check .
+ruff format .
+
+# Type check
+mypy odoo_backup_wizard
+
+# Tests with coverage
+pytest --cov=odoo_backup_wizard
+
+# Pre-commit hooks
+pre-commit install
+pre-commit run --all-files
+```
+
+---
+
 ## Contributing
 
-We welcome contributions from the community! If you have suggestions, bug reports, or contributions, please submit them via issues or pull requests on this repository. Your input is invaluable in making Odoo Backup Wizard more effective and reliable.
+Issues and pull requests are welcome. Please run `ruff check .` and `pytest` before submitting.
 
 ## License
 
-Copyright © 2024 [Cagatay URESIN](https:github.com/cagatayuresin)
+Copyright © 2024 [Cagatay URESIN](https://github.com/cagatayuresin)
 
-Odoo Backup Wizard is released under the MIT License. See the LICENSE file in the repository for more details.
+Released under the [MIT License](LICENSE).
